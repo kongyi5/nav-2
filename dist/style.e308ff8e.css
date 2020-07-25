@@ -14,12 +14,19 @@ a {
   color: inherit;
   text-decoration: none;
 }
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .globalHeader {
   margin: 20px;
+}
+.globalHeader .searchForm {
   display: flex;
   justify-content: space-between;
 }
-.globalHeader > input {
+.globalHeader input {
   width: 100%;
   margin-right: 10px;
   height: 40px;
@@ -27,7 +34,7 @@ a {
   border: 1px solid #ddd;
   border-radius: 4px;
 }
-.globalHeader > button {
+.globalHeader button {
   white-space: nowrap;
   padding: 0 18px;
   background: #4284e8;
