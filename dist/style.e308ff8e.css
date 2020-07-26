@@ -74,6 +74,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
 }
 .siteList .site > .link {
   font-size: 14px;

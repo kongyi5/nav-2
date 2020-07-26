@@ -4,29 +4,29 @@ const x = localStorage.getItem("x");
 const xObject = JSON.parse(x);
 const hashMap = xObject || [
   {
-    logo: "./images/bilibili.com",
+    logo: "B",
     url: "https://www.bilibili.com",
-    logoType: "image",
   },
   {
     logo: "G",
     url: "https://github.com",
-    logoType: "text",
   },
   {
     logo: "W",
     url: "https://www.wangdoc.com",
-    logoType: "text",
   },
   {
     logo: "Y",
     url: "https://yuque.com/regety",
-    logoType: "text",
   },
 ];
 
 const simplifyUrl = (url) => {
-  return url.replace("https://", "").replace("http://", "").replace("www", "");
+  return url
+    .replace("https://", "")
+    .replace("http://", "")
+    .replace("www", "")
+    .replace(/\/.*/, ""); // 删除 / 开头的内容
 };
 
 const render = () => {
@@ -35,7 +35,7 @@ const render = () => {
     const $li = $(`<li>
       <a href="${node.url}">
         <div class="site">
-          <div class="logo">${node.logo[0]}</div>
+          <div class="logo">${node.logo}</div>
           <div class="link">${simplifyUrl(node.url)}</div>
         </div>
       </a>
@@ -51,7 +51,7 @@ $(".addButton").on("click", () => {
   }
   console.log(url);
   hashMap.push({
-    logo: url[0],
+    logo: simplifyUrl(url)[0].toUpperCase(),
     logoType: "text",
     url: url,
   });

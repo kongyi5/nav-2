@@ -123,31 +123,27 @@ var $lastLi = $siteList.find("li.last");
 var x = localStorage.getItem("x");
 var xObject = JSON.parse(x);
 var hashMap = xObject || [{
-  logo: "./images/bilibili.com",
-  url: "https://www.bilibili.com",
-  logoType: "image"
+  logo: "B",
+  url: "https://www.bilibili.com"
 }, {
   logo: "G",
-  url: "https://github.com",
-  logoType: "text"
+  url: "https://github.com"
 }, {
   logo: "W",
-  url: "https://www.wangdoc.com",
-  logoType: "text"
+  url: "https://www.wangdoc.com"
 }, {
   logo: "Y",
-  url: "https://yuque.com/regety",
-  logoType: "text"
+  url: "https://yuque.com/regety"
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
-  return url.replace("https://", "").replace("http://", "").replace("www", "");
+  return url.replace("https://", "").replace("http://", "").replace("www", "").replace(/\/.*/, ""); // 删除 / 开头的内容
 };
 
 var render = function render() {
   $siteList.find("li:not(.last)").remove();
   hashMap.forEach(function (node) {
-    var $li = $("<li>\n      <a href=\"".concat(node.url, "\">\n        <div class=\"site\">\n          <div class=\"logo\">").concat(node.logo[0], "</div>\n          <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n        </div>\n      </a>\n    </li>")).insertBefore($lastLi);
+    var $li = $("<li>\n      <a href=\"".concat(node.url, "\">\n        <div class=\"site\">\n          <div class=\"logo\">").concat(node.logo, "</div>\n          <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n        </div>\n      </a>\n    </li>")).insertBefore($lastLi);
   });
 };
 
@@ -161,7 +157,7 @@ $(".addButton").on("click", function () {
 
   console.log(url);
   hashMap.push({
-    logo: url[0],
+    logo: simplifyUrl(url)[0].toUpperCase(),
     logoType: "text",
     url: url
   });
