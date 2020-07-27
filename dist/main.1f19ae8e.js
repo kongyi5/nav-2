@@ -142,8 +142,17 @@ var simplifyUrl = function simplifyUrl(url) {
 
 var render = function render() {
   $siteList.find("li:not(.last)").remove();
-  hashMap.forEach(function (node) {
-    var $li = $("<li>\n      <a href=\"".concat(node.url, "\">\n        <div class=\"site\">\n          <div class=\"logo\">").concat(node.logo, "</div>\n          <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n        </div>\n      </a>\n    </li>")).insertBefore($lastLi);
+  hashMap.forEach(function (node, index) {
+    var $li = $("<li>\n      <div class=\"site\">\n        <div class=\"logo\">".concat(node.logo, "</div>\n        <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n        <div class=\"close\">\n          <svg class=\"icon\">\n            <use xlink:href=\"#icon-close\"></use>\n          </svg>\n        </div>\n      </div>\n    </li>")).insertBefore($lastLi);
+    $li.on("click", function () {
+      window.open(node.url);
+    });
+    $li.on("click", ".close", function (e) {
+      e.stopPropagation(); // 阻止冒泡
+
+      hashMap.splice(index, 1);
+      render();
+    });
   });
 };
 
@@ -196,7 +205,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49865" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49879" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

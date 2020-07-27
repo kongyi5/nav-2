@@ -66,6 +66,7 @@ img {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 20px 0;
+  position: relative;
 }
 .siteList .site > .logo {
   width: 64px;
@@ -79,6 +80,11 @@ img {
 .siteList .site > .link {
   font-size: 14px;
   margin-top: 4px;
+}
+.siteList .site > .close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 .siteList .addButton {
   width: 160px;
