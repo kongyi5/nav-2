@@ -1,5 +1,14 @@
 {
   "devDependencies": {
     "cssnano": "^4.1.10"
+  },
+  "name": "nav-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kongyi5/nav-2.git",
+  "author": "kongyi <1269428345@qq.com>",
+  "license": "MIT",
+  "scripts":{
+    "build": "rm -rf dist && parcel build src/index.html --public-url ./ --no-minify"
   }
 }

@@ -5,11 +5,23 @@ const xObject = JSON.parse(x);
 const hashMap = xObject || [
   {
     logo: "B",
+    url: "https://www.baidu.com",
+  },
+  {
+    logo: "G",
+    url: "https://www.google.com",
+  },
+  {
+    logo: "Z",
+    url: "https://www.zhihu.com",
+  },
+  {
+    logo: "B",
     url: "https://www.bilibili.com",
   },
   {
     logo: "G",
-    url: "https://github.com",
+    url: "https://www.github.com",
   },
   {
     logo: "W",
@@ -17,7 +29,7 @@ const hashMap = xObject || [
   },
   {
     logo: "Y",
-    url: "https://yuque.com/regety",
+    url: "https://www.yuque.com",
   },
 ];
 
@@ -25,7 +37,7 @@ const simplifyUrl = (url) => {
   return url
     .replace("https://", "")
     .replace("http://", "")
-    .replace("www", "")
+    .replace("www.", "")
     .replace(/\/.*/, ""); // 删除 / 开头的内容
 };
 
@@ -63,16 +75,15 @@ $(".addButton").on("click", () => {
   console.log(url);
   hashMap.push({
     logo: simplifyUrl(url)[0].toUpperCase(),
-    logoType: "text",
     url: url,
   });
   render();
 });
 
-window.onbeforeunload = () => {
-  const string = JSON.stringify(hashMap);
-  localStorage.setItem("x", string);
-};
+// window.onbeforeunload = () => {
+//   const string = JSON.stringify(hashMap);
+//   localStorage.setItem("x", string);
+// };
 
 // $(document).on("keypress", (e) => {
 //   const { key } = e;

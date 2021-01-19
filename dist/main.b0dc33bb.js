@@ -124,20 +124,29 @@ var x = localStorage.getItem("x");
 var xObject = JSON.parse(x);
 var hashMap = xObject || [{
   logo: "B",
+  url: "https://www.baidu.com"
+}, {
+  logo: "G",
+  url: "https://www.google.com"
+}, {
+  logo: "Z",
+  url: "https://www.zhihu.com"
+}, {
+  logo: "B",
   url: "https://www.bilibili.com"
 }, {
   logo: "G",
-  url: "https://github.com"
+  url: "https://www.github.com"
 }, {
   logo: "W",
   url: "https://www.wangdoc.com"
 }, {
   logo: "Y",
-  url: "https://yuque.com/regety"
+  url: "https://www.yuque.com"
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
-  return url.replace("https://", "").replace("http://", "").replace("www", "").replace(/\/.*/, ""); // 删除 / 开头的内容
+  return url.replace("https://", "").replace("http://", "").replace("www.", "").replace(/\/.*/, ""); // 删除 / 开头的内容
 };
 
 var render = function render() {
@@ -167,16 +176,14 @@ $(".addButton").on("click", function () {
   console.log(url);
   hashMap.push({
     logo: simplifyUrl(url)[0].toUpperCase(),
-    logoType: "text",
     url: url
   });
   render();
-});
-
-window.onbeforeunload = function () {
-  var string = JSON.stringify(hashMap);
-  localStorage.setItem("x", string);
-}; // $(document).on("keypress", (e) => {
+}); // window.onbeforeunload = () => {
+//   const string = JSON.stringify(hashMap);
+//   localStorage.setItem("x", string);
+// };
+// $(document).on("keypress", (e) => {
 //   const { key } = e;
 //   for (let i = 0; i < hashMap.length; i++) {
 //     if (hashMap[i].logo.toLowerCase() === key) {
@@ -185,4 +192,4 @@ window.onbeforeunload = function () {
 //   }
 // });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.b0363545.js.map
+//# sourceMappingURL=main.b0dc33bb.js.map
